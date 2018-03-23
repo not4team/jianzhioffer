@@ -1,0 +1,158 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch)-StringUtils<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.StringUtils",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-FindContinuousSequence<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.FindContinuousSequence",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Array<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.Array",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-BinarySearch<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.BinarySearch",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-FirstNotRepeatingChar<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.FirstNotRepeatingChar",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-InversePairs<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.InversePairs",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ListNode<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.ListNode",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Matrix<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.Matrix",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Power<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.Power",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-SearchFromTwoArrays<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.SearchFromTwoArrays",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-StringUtils<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.StringUtils",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TreeNode<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.TreeNode",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-UglyNumber<jianzhioffer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "jianzhioffer.UglyNumber",
+            "projectName": "jianzhioffer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Attach)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 0
+        }
+    ]
+}
