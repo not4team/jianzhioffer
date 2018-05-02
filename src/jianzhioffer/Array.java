@@ -141,6 +141,7 @@ public class Array {
 	 * 统计一个数字在排序数组中出现的次数。
 	 * 
 	 * 二分查找
+	 * 
 	 * @param array
 	 * @param k
 	 * @return
@@ -198,17 +199,15 @@ public class Array {
 	 * 一个整型数组里除了两个数字之外，其他的数字都出现了两次。请写程序找出这两个只出现一次的数字。
 	 * num1,num2分别为长度为1的数组。传出参数将num1[0],num2[0]设置为返回结果
 	 * 
-	 * 异或运算符（^）运算规则：0^0=0；   0^1=1；   1^0=1；   1^1=0；
-	 * 按位或运算符（|）运算规则：0|0=0；   0|1=1；   1|0=1；    1|1=1；
-	 * 按位与运算符（&）运算规则：0&0=0;   0&1=0;    1&0=0;     1&1=1;
-	 * 取反运算符（~）运算规则：~1=0；   ~0=1；
+	 * 异或运算符（^）运算规则：0^0=0； 0^1=1； 1^0=1； 1^1=0； 按位或运算符（|）运算规则：0|0=0； 0|1=1； 1|0=1；
+	 * 1|1=1； 按位与运算符（&）运算规则：0&0=0; 0&1=0; 1&0=0; 1&1=1; 取反运算符（~）运算规则：~1=0； ~0=1；
 	 * 左移运算符（<<）将一个运算对象的各二进制位全部左移若干位（左边的二进制位丢弃，右边补0）。若左移时舍弃的高位不包含1，则每左移一位，相当于该数乘以2。
 	 * 右移运算符（>>）将一个数的各二进制位全部右移若干位，正数左补0，负数左补1，右边丢弃。左补0 or 补1 得看被移数是正还是负。
 	 * 无符号右移运算符（>>>）右移后左边空出的位用零来填充。移出右边的位被丢弃。
 	 * 
-	 * 可以用位运算实现，如果将所有所有数字相异或，则最后的结果肯定是那两个只出现一次的数字异或的结果，
-	 * 所以根据异或的结果1所在的最低位，把数字分成两半，
+	 * 可以用位运算实现，如果将所有所有数字相异或，则最后的结果肯定是那两个只出现一次的数字异或的结果， 所以根据异或的结果1所在的最低位，把数字分成两半，
 	 * 每一半里都还有只出现一次的数据和成对出现的数据这样继续对每一半相异或则可以分别求出两个只出现一次的数字
+	 * 
 	 * @param array
 	 * @param num1
 	 * @param num2
@@ -219,7 +218,7 @@ public class Array {
 		}
 		int size = array.length;
 		int temp = array[0];
-		//找出两个只出现一次的数字异或的结果
+		// 找出两个只出现一次的数字异或的结果
 		for (int i = 1; i < size; i++) {
 			temp = temp ^ array[i];
 		}
@@ -227,7 +226,7 @@ public class Array {
 			return;
 		}
 		int index = 0;
-		//异或的结果1所在的最低位
+		// 异或的结果1所在的最低位
 		while ((temp & 1) == 0) {
 			temp = temp >> 1;
 			++index;
@@ -247,6 +246,63 @@ public class Array {
 	private boolean IsBit(int num, int index) {
 		num = num >> index;
 		return (num & 1) == 1;
+	}
+
+	/**
+	 * 在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。
+	 * 也不知道每个数字重复几次。请找出数组中任意一个重复的数字。
+	 * 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。
+	 * 
+	 * 当一个数字被访问过后，可以设置对应位上的数 - n，之后再遇到相同的数时，会发现对应位上的数已经小于0了，那么直接返回这个数即可。
+	 */
+	// Parameters:
+	// numbers: an array of integers
+	// length: the length of array numbers
+	// duplication: (Output) the duplicated number in the array number,length of
+	// duplication array is 1,so using duplication[0] = ? in implementation;
+	// Here duplication like pointor in C/C++, duplication[0] equal *duplication in
+	// C/C++
+	// 这里要特别注意~返回任意重复的一个，赋值duplication[0]
+	// Return value: true if the input is valid, and there are some duplications in
+	// the array number
+	// otherwise false
+	public boolean duplicate(int numbers[], int length, int[] duplication) {
+		for (int i = 0; i < length; i++) {
+			int index = numbers[i];
+			if (index < 0) {
+				index += length;
+			}
+			if (numbers[index] < 0) {
+				duplication[0] = index;
+				return true;
+			}
+			numbers[index] = numbers[index] - length;
+
+		}
+		return false;
+	}
+
+	/**
+	 * 给定一个数组A[0,1,...,n-1],请构建一个数组B[0,1,...,n-1],其中B中的元素B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*...*A[n-1]。不能使用除法。
+	 * 
+	 * B[i]的意义是A数组不包括i位置的所有乘积，分为 i左边的元素乘积和 i右边的所有元素乘积。第一个for计算i左边的乘积，第二个for计算右边的。
+	 * 初始化B[0]=1，是因为0左边没有元素，所以乘积为1。
+	 * 
+	 * B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*...*A[n-1]
+	 * 从左到右算 B[i]=A[0]*A[1]*...*A[i-1]
+	 * 从右到左算B[i]*=A[i+1]*...*A[n-1] 
+	 */
+	public int[] multiply(int[] A) {
+		int[] B = new int[A.length];
+		int temp = 1;
+		for (int i = 0; i < A.length; temp *= A[i++]) {
+			B[i] = temp;
+		}
+		temp = 1;
+		for (int i = A.length - 1; i >= 0; temp *= A[i--]) {
+			B[i] *= temp;
+		}
+		return B;
 	}
 
 	public static void main(String[] args) {

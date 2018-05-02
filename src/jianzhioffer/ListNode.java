@@ -107,6 +107,13 @@ public class ListNode {
 		return pre;
 	}
 
+	/**
+	 * 一个链表中包含环，请找出该链表的环的入口结点。
+	 */
+	public ListNode EntryNodeOfLoop(ListNode pHead) {
+		return null;
+	}
+
 	public static void main(String[] args) {
 		ListNode l1 = new ListNode(1);
 		ListNode l2 = new ListNode(2);
