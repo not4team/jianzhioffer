@@ -9,6 +9,13 @@ import java.util.Stack;
  * 先序遍历：根节点->左子树->右子树
  * 中序遍历：左子树->根节点->右子树
  * 后序遍历：左子树->右子树->根节点
+ * 
+ * 二叉搜索树，也称有序二叉树,排序二叉树，是指一棵空树或者具有下列性质的二叉树：
+ * 1. 若任意节点的左子树不空，则左子树上所有结点的值均小于它的根结点的值；
+ * 2. 若任意节点的右子树不空，则右子树上所有结点的值均大于它的根结点的值；
+ * 3. 任意节点的左、右子树也分别为二叉查找树。
+ * 4. 没有键值相等的节点。
+ * 
  * @author shixq
  *
  */
@@ -506,6 +513,218 @@ public class TreeNode {
 		}
 		return Math.abs(leftHeight - rightHeight) > 1 ? -1 : 1 + Math.max(leftHeight, rightHeight);
 	}
+
+	/**
+	 * 请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。
+	 * 
+	 * 思路：首先根节点以及其左右子树，左子树的左子树和右子树的右子树相同左子树的右子树和右子树的左子树相同即可，采用递归
+	 * 非递归也可，采用栈或队列存取各级子树根节点
+	 */
+	boolean isSymmetrical(TreeNode pRoot) {
+		if (pRoot == null) {
+			return true;
+		}
+		return isSymmetrical(pRoot.left, pRoot.right);
+	}
+
+	boolean isSymmetrical(TreeNode left, TreeNode right) {
+		if (left == null) {
+			return right == null;
+		} else if (right == null) {
+			return false;
+		} else if (left.val != right.val) {
+			return false;
+		} else {
+			return isSymmetrical(left.left, right.right) && isSymmetrical(left.right, right.left);
+		}
+	}
+
+	/**
+	 * 请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。
+	 * 
+	 * 
+	 */
+	public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+		// s1存奇数层节点
+		Stack<TreeNode> s1 = new Stack<TreeNode>();
+		s1.push(pRoot);
+		// s2存偶数层节点
+		Stack<TreeNode> s2 = new Stack<TreeNode>();
+
+		ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
+
+		while (!s1.empty() || !s2.empty()) {
+			if (!s1.empty()) {
+				ArrayList<Integer> temp = new ArrayList<Integer>();
+				while (!s1.empty()) {
+					TreeNode node = s1.pop();
+					if (node != null) {
+						temp.add(node.val);
+						System.out.print(node.val + " ");
+						s2.push(node.left);
+						s2.push(node.right);
+					}
+				}
+				if (!temp.isEmpty()) {
+					list.add(temp);
+					System.out.println();
+				}
+			} else if (!s2.empty()){
+				ArrayList<Integer> temp = new ArrayList<Integer>();
+				while (!s2.empty()) {
+					TreeNode node = s2.pop();
+					if (node != null) {
+						temp.add(node.val);
+						System.out.print(node.val + " ");
+						s1.push(node.right);
+						s1.push(node.left);
+					}
+				}
+				if (!temp.isEmpty()) {
+					list.add(temp);
+					System.out.println();
+				}
+			}
+		}
+		return list;
+	}
+
+	/**
+	 * 从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。
+	 */
+	ArrayList<ArrayList<Integer> > Print1(TreeNode pRoot) {
+		// s1存奇数层节点
+		Queue<TreeNode> s1 = new LinkedList<TreeNode>();
+		s1.offer(pRoot);
+		// s2存偶数层节点
+		Queue<TreeNode> s2 = new LinkedList<TreeNode>();
+
+		ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
+
+		while (!s1.isEmpty() || !s2.isEmpty()) {
+			if (!s1.isEmpty()) {
+				ArrayList<Integer> temp = new ArrayList<Integer>();
+				while (!s1.isEmpty()) {
+					TreeNode node = s1.poll();
+					if (node != null) {
+						temp.add(node.val);
+						System.out.print(node.val + " ");
+						s2.offer(node.left);
+						s2.offer(node.right);
+					}
+				}
+				if (!temp.isEmpty()) {
+					list.add(temp);
+					System.out.println();
+				}
+			} else if (!s2.isEmpty()){
+				ArrayList<Integer> temp = new ArrayList<Integer>();
+				while (!s2.isEmpty()) {
+					TreeNode node = s2.poll();
+					if (node != null) {
+						temp.add(node.val);
+						System.out.print(node.val + " ");
+						s1.offer(node.left);
+						s1.offer(node.right);
+					}
+				}
+				if (!temp.isEmpty()) {
+					list.add(temp);
+					System.out.println();
+				}
+			}
+		}
+		return list;
+	}
+	
+	/**
+	 * 从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。
+	 */
+	ArrayList<ArrayList<Integer> > Print2(TreeNode pRoot) {
+		ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+		if (pRoot == null) {
+			return result;
+		}
+		Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		queue.offer(pRoot);
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			ArrayList<Integer> temp = new ArrayList<>();
+			for(int i = 0; i < size; i++) {
+				TreeNode node = queue.poll();
+				temp.add(node.val);
+				if(node.left != null) {
+					queue.offer(node.left);
+				}
+				if(node.right != null) {
+					queue.offer(node.right);
+				}
+			}
+			result.add(temp);
+		}
+		return result;
+	}
+
+	int index = -1; // 计数变量
+
+	/**
+	 * 请实现两个函数，分别用来序列化和反序列化二叉树
+	 */
+	String Serialize(TreeNode root) {
+		StringBuilder sb = new StringBuilder();
+		if (root == null) {
+			sb.append("#,");
+			return sb.toString();
+		}
+		sb.append(root.val + ",");
+		sb.append(Serialize(root.left));
+		sb.append(Serialize(root.right));
+		return sb.toString();
+	}
+
+	TreeNode Deserialize(String str) {
+		index++;
+		String[] strr = str.split(",");
+		TreeNode node = null;
+		if (!strr[index].equals("#")) {
+			node = new TreeNode(Integer.valueOf(strr[index]));
+			node.left = Deserialize(str);
+			node.right = Deserialize(str);
+		}
+		return node;
+	}
+
+	/**
+	 * 给定一颗二叉搜索树，请找出其中的第k大的结点。例如， 
+	 * 		5 
+	 * 	   / \ 
+	 *    3   7 
+	 *   /\   /\ 
+	 *  2  4  6 8 
+	 * 中，按结点数值大小顺序第三个结点的值为4。
+	 * 
+	 * 二叉搜索树按照中序遍历的顺序打印出来正好就是排序好的顺序。所以，按照中序遍历顺序找到第k个结点就是结果。
+	 */
+	TreeNode KthNode(TreeNode pRoot, int k) {
+        Stack<TreeNode> treeNodeStack = new Stack<TreeNode>();
+		TreeNode node = pRoot;
+		int index = 0;
+		while (node != null || !treeNodeStack.isEmpty()) {
+			while (node != null) {
+				treeNodeStack.push(node);
+				node = node.left;
+			}
+			if (!treeNodeStack.isEmpty()) {
+				node = treeNodeStack.pop();
+				System.out.print(node.val + " ");
+				if(++index == k) {
+					return node;
+				}
+				node = node.right;
+			}
+		}
+		return null;
+    }
 
 	public static void main(String[] args) {
 		int[] pre = { 1, 2, 4, 7, 3, 5, 6, 8 };
