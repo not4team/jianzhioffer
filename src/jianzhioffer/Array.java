@@ -1,6 +1,7 @@
 package jianzhioffer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -232,7 +233,7 @@ public class Array {
 			++index;
 		}
 		for (int i = 0; i < size; i++) {
-			if (IsBit(array[i], index)) {
+			if (IsBit(array[i], index)) { //数组分成两组，该位是1的数和不是1的数
 				num1[0] ^= array[i];
 			} else {
 				num2[0] ^= array[i];
