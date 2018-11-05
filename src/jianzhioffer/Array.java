@@ -64,6 +64,7 @@ public class Array {
 		if (k > length || k == 0) {
 			return result;
 		}
+		//优先队列，最大堆，堆顶是最大的一个数
 		PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(k, new Comparator<Integer>() {
 
 			@Override
