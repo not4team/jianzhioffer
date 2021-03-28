@@ -64,7 +64,7 @@ public class Array {
 		if (k > length || k == 0) {
 			return result;
 		}
-		//优先队列，最大堆，堆顶是最大的一个数
+		// 优先队列，最大堆，堆顶是最大的一个数
 		PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(k, new Comparator<Integer>() {
 
 			@Override
@@ -234,7 +234,7 @@ public class Array {
 			++index;
 		}
 		for (int i = 0; i < size; i++) {
-			if (IsBit(array[i], index)) { //数组分成两组，该位是1的数和不是1的数
+			if (IsBit(array[i], index)) { // 数组分成两组，该位是1的数和不是1的数
 				num1[0] ^= array[i];
 			} else {
 				num2[0] ^= array[i];
@@ -290,9 +290,8 @@ public class Array {
 	 * B[i]的意义是A数组不包括i位置的所有乘积，分为 i左边的元素乘积和 i右边的所有元素乘积。第一个for计算i左边的乘积，第二个for计算右边的。
 	 * 初始化B[0]=1，是因为0左边没有元素，所以乘积为1。
 	 * 
-	 * B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*...*A[n-1]
-	 * 从左到右算 B[i]=A[0]*A[1]*...*A[i-1]
-	 * 从右到左算B[i]*=A[i+1]*...*A[n-1] 
+	 * B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*...*A[n-1] 从左到右算 B[i]=A[0]*A[1]*...*A[i-1]
+	 * 从右到左算B[i]*=A[i+1]*...*A[n-1]
 	 */
 	public int[] multiply(int[] A) {
 		int[] B = new int[A.length];
