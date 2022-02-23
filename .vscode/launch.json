@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MyTest",
+            "request": "launch",
+            "mainClass": "jianzhioffer.MyTest",
+            "projectName": "jianzhioffer"
+        },
+        {
+            "type": "java",
             "name": "Debug (Launch)-StringUtils<jianzhioffer>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
