@@ -2,18 +2,24 @@
  * @Author: shixq
  * @Date: 2021-11-04 14:12:26
  * @LastEditors: shixq
- * @LastEditTime: 2022-02-23 16:46:13
+ * @LastEditTime: 2022-03-09 14:28:53
  * @Description: 
  */
 package jianzhioffer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Deque;
+import java.util.List;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.swing.plaf.synth.Region;
 
 public class MyTest {
     public static MyObj test = null;
@@ -191,6 +197,75 @@ public class MyTest {
             pos--;
         }
         return result;
+    }
+
+    public static List<List<Integer>> threeSum(int[] nums, int target) {
+        int length;
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || (length = nums.length) < 3) {
+            return result;
+        }
+        Arrays.sort(nums);
+        for (int i = 0; i < length; ++i) {
+            if (nums[i] > 0) {
+                return result;
+            }
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+            int L = i + 1;
+            int R = length - 1;
+            while (L < R) {
+                int sum = nums[i] + nums[L] + nums[R];
+                if (sum == 0) {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(nums[i]);
+                    list.add(nums[L]);
+                    list.add(nums[R]);
+                    result.add(list);
+                    // 去重复
+                    while (L < R && nums[L] == nums[L + 1])
+                        L++;
+                    while (L < R && nums[R] == nums[R - 1])
+                        R--;
+                    L++;
+                    R--;
+                } else if (sum < 0) {
+                    L++;
+                } else {
+                    R--;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static int findMoreHalfNum(int[] nums) {
+        int n = nums.length;
+        if (n == 0) {
+            return 0;
+        }
+        int num = nums[0], count = 1;
+        for (int i = 1; i < n; ++i) {
+            if (num == nums[i]) {
+                count++;
+            } else {
+                count--;
+            }
+            if (count == 0) {
+                num = nums[i];
+                count = 1;
+            }
+        }
+        int size = 0;
+        for (int i = 0; i < n; ++i) {
+            if (nums[i] == num) {
+                size++;
+            }
+        }
+        if (size > n / 2) {
+            return num;
+        }
+        return 0;
     }
 
     public static void main(String[] args) {
