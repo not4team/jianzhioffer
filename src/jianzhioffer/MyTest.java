@@ -306,7 +306,6 @@ public class MyTest {
         System.out.println(test);
         int[] nums = new int[] { 1, 3, 9, 6, 11 };
         System.out.println(findKthNum(nums, 4));
-        System.out.println(tableSizeFor(19));
     }
 
     class MyObj {
